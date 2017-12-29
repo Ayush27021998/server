@@ -3,22 +3,33 @@ import threading
 
 s= socket(AF_INET,SOCK_STREAM)
 
-host= "crimemastergogo.chickenkiller.com"
-port= 5001
+host= ""
+port= 5000
 
-s.bind((host,port))
 
+s.bind((host, port))
 s.listen(1)
-print('Server ready')
-
-conn,addr= s.accept()
+print("Server Ready")
+conn,addr = s.accept()
 print("Connected")
+
+def goto(linenum):
+    global line
+    line = linenum
 
 class Rocky_recieve(threading.Thread):
     def run(self):
-        while True:
+        x=True
+        while x==True:
             data = conn.recv(1024)
             print(data.decode())
+            if not data:
+                goto(11)
+                break
+
+
+
+
 
 
 class Rocky_send(threading.Thread):
