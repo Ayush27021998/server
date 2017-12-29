@@ -1,9 +1,10 @@
 from socket import *
 import threading
 
+
 s= socket(AF_INET,SOCK_STREAM)
 
-host= ""
+host= ''
 port= 5000
 
 
@@ -13,10 +14,6 @@ print("Server Ready")
 conn,addr = s.accept()
 print("Connected")
 
-def goto(linenum):
-    global line
-    line = linenum
-
 class Rocky_recieve(threading.Thread):
     def run(self):
         x=True
@@ -24,7 +21,6 @@ class Rocky_recieve(threading.Thread):
             data = conn.recv(1024)
             print(data.decode())
             if not data:
-                goto(11)
                 break
 
 
